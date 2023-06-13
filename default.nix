@@ -7,9 +7,9 @@
 #     nix-build -A mypackage
 {pkgs ? import <nixpkgs> {}}: {
   # The `lib`, `modules`, and `overlay` names are special
-  lib = import ./lib {inherit pkgs;}; # functions
-  modules = import ./modules; # NixOS modules
-  overlays = import ./overlays; # nixpkgs overlays
+  #lib = import ./lib {inherit pkgs;}; # functions
+  #modules = import ./modules; # NixOS modules
+  #overlays = import ./overlays; # nixpkgs overlays
 
   rbac-police = pkgs.callPackage ./pkgs/rbac-police {};
 }
