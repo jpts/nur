@@ -1,26 +1,31 @@
 {
-  stdenv,
   lib,
-  pkgs,
+  stdenv,
+  buildGoModule,
+  fetchFromGitHub,
 }:
-
-pkgs.buildGoModule rec {
+buildGoModule rec {
   pname = "rbac-police";
   version = "1.1.2";
 
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "PaloAltoNetworks";
     repo = "rbac-police";
     rev = "v${version}";
     sha256 = "sha256-TbjN+xH3DIfzwxA7p9NCvWkvz4bEUPilsq685DgiV1k=";
   };
-
   vendorSha256 = "sha256-oTvXlJpcplT6W5XMMuC9oNkYaTku1MHGRVE9eLz4H3M=";
 
   ldflags = [
     "-s"
     "-w"
   ];
+
+  ## copy over std policy library
+  postInstall = ''
+    cp -r ./lib $out/lib
+  '';
+
   meta = with lib; {
     homepage = "https://github.com/PaloAltoNetworks/rbac-police";
     changelog = "https://github.com/PaloAltoNetworks/rbac-police/releases/tag/v${version}";
