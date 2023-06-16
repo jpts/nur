@@ -12,4 +12,5 @@
   #overlays = import ./overlays; # nixpkgs overlays
 
   rbac-police = pkgs.callPackage ./pkgs/rbac-police {};
+  coredns-enum = pkgs.callPackage ./pkgs/coredns-enum {};
 }
