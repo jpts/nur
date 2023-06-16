@@ -3,6 +3,7 @@
   stdenv,
   buildGoModule,
   fetchFromGitHub,
+  fetchpatch,
 }:
 buildGoModule rec {
   pname = "rbac-police";
@@ -15,6 +16,13 @@ buildGoModule rec {
     sha256 = "sha256-TbjN+xH3DIfzwxA7p9NCvWkvz4bEUPilsq685DgiV1k=";
   };
   vendorSha256 = "sha256-oTvXlJpcplT6W5XMMuC9oNkYaTku1MHGRVE9eLz4H3M=";
+  patches = [
+    (fetchpatch {
+      name = "fix-utils.patch";
+      url = "https://github.com/PaloAltoNetworks/rbac-police/commit/ab2db327a9377463f2ddee3e7be522fdbaf44b8c.patch";
+      sha256 = "sha256-SlDIcvoVx1vsO/Cr+3906Iu9uezgSPrR/5niyX6ZVnI=";
+    })
+  ];
 
   ldflags = [
     "-s"
