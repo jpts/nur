@@ -13,9 +13,8 @@ buildGoModule rec {
   src = fetchFromGitHub {
     inherit owner repo;
     rev = "v${version}";
-    sha256 = "sha256-uJRVn9DEGNFAY1+SkSXmBwKoHHJJCr/csSDgq45TmRM=";
+    sha256 = "sha256-5VwyygVAGxVIE1TkkH3XpcTnk0o4eMDgnl9t143sA/k=";
   };
-
   vendorSha256 = "sha256-kdBbMbTvBWJl9AR0xm4VnDCItHFM/KLzQEe2qBNOAEs=";
 
   ldflags = [
