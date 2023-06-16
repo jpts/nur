@@ -23,7 +23,8 @@ buildGoModule rec {
 
   ## copy over std policy library
   postInstall = ''
-    cp -r ./lib $out/lib
+    mkdir -p $out/lib/rbac-police/
+    cp -r ./lib/* $out/lib/rbac-police/
   '';
 
   meta = with lib; {
