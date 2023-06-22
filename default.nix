@@ -13,4 +13,5 @@
 
   rbac-police = pkgs.callPackage ./pkgs/rbac-police {};
   coredns-enum = pkgs.callPackage ./pkgs/coredns-enum {};
+  penelope = pkgs.callPackage ./pkgs/penelope {};
 }
