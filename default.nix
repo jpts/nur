@@ -13,6 +13,6 @@
 
   rbac-police = pkgs.callPackage ./pkgs/rbac-police {};
   coredns-enum = pkgs.callPackage ./pkgs/coredns-enum {};
-  penelope = pkgs.callPackage ./pkgs/penelope {};
+  penelope = pkgs.python3Packages.callPackage ./pkgs/penelope {};
   kubectl-execws = pkgs.callPackage ./pkgs/kubectl-execws {};
 }
