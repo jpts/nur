@@ -4,6 +4,8 @@
 , fetchPypi
 , fetchpatch
 , pythonAtLeast
+, nose
+, nose-exclude
 , httplib2
 , urllib3
 , certifi
@@ -33,28 +35,33 @@ buildPythonPackage rec {
     six
   ];
 
-  # work required
-  doCheck = false;
-
-  disabledTests = [
-    "testGet301ViaHttps"
-    "testGetUnknownServer"
-    "testGetViaHttps"
-    "testGetViaHttpsSpecViolationOnLocation"
-    "testHeadRead"
-    "testSniHostnameValidation"
-    "test"
-    "testSslCertValidation"
-  ] ++ lib.optionals (pythonAtLeast "3.10") [
-    "testWsseAlgorithm"
-    "WsseAlgorithm"
+  nativeCheckInputs = [
+    nose
+    nose-exclude
   ];
 
-  #postInstall = ''
-  #'';
+  checkPhase = ''
+    runHook preCheck
+
+    # fix test problems
+    sed -i -e "s/httplib2._parse_www/httplib2.auth._parse_www/g" httplib2shim/test/httplib2_test.py
+    sed -i -e "s/expected = b\"quR/expected = \"quR/" httplib2shim/test/httplib2_test.py
+
+    # Exclude tests that:
+    # - require network connection
+    # - don't exist in httplib any more
+    # - have changed significantly in httplib
+    nosetests \
+    --exclude="testGet(301ViaHttps|UnknownServer|ViaHttps|ViaHttpsSpecViolationOnLocation)" \
+    --exclude="test(HeadRead|SniHostnameValidation|SslCertValidation)" \
+    --exclude="testParseWWWAuthenticateMultiple\d?" \
+    --exclude-test="httplib2shim.test.httplib2_test.UrlSafenameTest"
+
+    runHook postCheck
+  '';
 
   meta = with lib; {
-    description = "";
+    description = "urllib3 sanity for httplib2 users";
     homepage = "https://github.com/GoogleCloudPlatform/httplib2shim";
     license = licenses.mit;
     maintainers = with maintainers; [ jpts ];
