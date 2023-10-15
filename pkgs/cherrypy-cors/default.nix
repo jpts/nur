@@ -1,8 +1,9 @@
 { lib
 , ajpy
 , buildPythonPackage
-, pythonRelaxDepsHook
 , fetchPypi
+, pythonRelaxDepsHook
+, pytestCheckHook
 , setuptools
 , httpagentparser
 , cherrypy
@@ -17,7 +18,10 @@ buildPythonPackage rec {
     hash = "sha256-gzhM1mSnq4uat9SSb+lxOs/gvONmXuKBiaD6BLnyEtY=";
   };
 
-  nativeBuildInputs = [ pythonRelaxDepsHook ];
+  nativeBuildInputs = [
+    pythonRelaxDepsHook
+    pytestCheckHook
+  ];
   pythonRelaxDeps = true;
 
   propagatedBuildInputs = [
@@ -25,12 +29,6 @@ buildPythonPackage rec {
     httpagentparser
     cherrypy
   ];
-
-  # tests require docker-compose and vagrant
-  #doCheck = false;
-
-  #postInstall = ''
-  #'';
 
   meta = with lib; {
     description = "";
