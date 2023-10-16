@@ -15,6 +15,9 @@ stdenvNoCC.mkDerivation rec {
     sha256 = "sha256-6PLyQSgLKjykq9sr4QmPWJ0ueoyu8jdEBCRtHm5YcqY=";
   };
 
+  sourceRoot = ".";
+
+  preferLocalBuild = true;
   nativeBuildInputs = [unzip];
 
   # dont invalidate sig
