@@ -1,5 +1,4 @@
 { lib
-, ajpy
 , buildPythonPackage
 , fetchPypi
 , pythonRelaxDepsHook
