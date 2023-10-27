@@ -27,7 +27,7 @@ let
     patator = pkgs.python3Packages.callPackage ./pkgs/patator { };
     cherrypy-cors = pkgs.python3Packages.callPackage ./pkgs/cherrypy-cors { };
     httplib2shim = pkgs.python3Packages.callPackage ./pkgs/httplib2shim { };
-    insomnia = pkgs.callPackage ./pkgs/insomnia { };
+    insomnium = pkgs.callPackage ./pkgs/insomnium { };
     inso = pkgs.callPackage ./pkgs/inso { };
     scoutsuite = pkgs.python3Packages.callPackage ./pkgs/scoutsuite {
       cherrypy-cors = nurPkgs.cherrypy-cors;
