@@ -6,16 +6,16 @@
 }:
 buildGoModule rec {
   pname = "coredns-enum";
-  version = "0.2.1";
+  version = "0.2.4";
   owner = "jpts";
   repo = pname;
 
   src = fetchFromGitHub {
     inherit owner repo;
     rev = "v${version}";
-    sha256 = "sha256-5VwyygVAGxVIE1TkkH3XpcTnk0o4eMDgnl9t143sA/k=";
+    sha256 = "sha256-EITgW6+gVLkcLqc368iw3wYBy5fXXjUC2VTMYBSv2pw=";
   };
-  vendorSha256 = "sha256-kdBbMbTvBWJl9AR0xm4VnDCItHFM/KLzQEe2qBNOAEs=";
+  vendorSha256 = "sha256-JyOb+Apnw+lmeHTb0X32GhNObEyn31L8mFNNLtQxxI8=";
 
   ldflags = [
     "-s"
