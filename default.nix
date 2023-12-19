@@ -33,6 +33,7 @@ let
       cherrypy-cors = nurPkgs.cherrypy-cors;
       httplib2shim = nurPkgs.httplib2shim;
     };
+    granted = pkgs.callPackage ./pkgs/granted { };
     curl = pkgs.callPackage ./pkgs/curl {
       idnSupport = true;
       zstdSupport = true;
